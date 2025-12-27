@@ -59,6 +59,7 @@ The server will start at http://localhost:3000.
 2.Navigate to http://localhost:3000/api-docs.
 
 3.Use the interactive UI to test endpoints:
+
    POST /auth/register: Register a user and copy the token.
 
    Authorize: Click the lock icon and enter Bearer <your_token>.
