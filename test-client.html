@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>Purple Merit Real-Time Test</h2>
+    <input type="text" id="projectInput" placeholder="Enter Project ID" value="proj_1">
+    <button onclick="joinProject()">Join Project</button>
+    <br><br>
+    <textarea id="codeArea" rows="10" cols="50" oninput="sendCode()" placeholder="Type code here..."></textarea>
+    <div id="status" style="color: green; margin-top: 10px;"></div>
+
+    <script>
+        const socket = io('http://localhost:3000');
+        let projectId = 'proj_1';
+
+        socket.on('connect', () => {
+            document.getElementById('status').innerText = "Connected to Server: " + socket.id;
+        });
+
+        function joinProject() {
+            projectId = document.getElementById('projectInput').value;
+            socket.emit('join_project', projectId);
+            alert('Joined ' + projectId);
+        }
+
+        function sendCode() {
+            const code = document.getElementById('codeArea').value;
+            socket.emit('send_code_change', { projectId, code });
+        }
+
+        socket.on('receive_code_change', (data) => {
+            document.getElementById('codeArea').value = data.code;
+            console.log("Received update from " + data.senderId);
+        });
+    </script>
+</body>
+</html>
