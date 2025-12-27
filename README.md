@@ -23,7 +23,7 @@ A production-grade backend service designed for a real-time collaborative coding
 ### 1. Installation
 Clone the repository and install dependencies:
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/rickymahto22/purple-merit-backend
 cd purple-merit-backend
 npm install
 ```
